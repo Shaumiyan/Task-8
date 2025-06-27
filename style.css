@@ -1,0 +1,120 @@
+/* Overall Page Background and Typography */
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(to right, #d9e4f5, #f7f8fa);
+  color: #222;
+}
+
+/* Main Container */
+.container {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* Title */
+h1 {
+  text-align: center;
+  font-size: 2rem;
+  color: #3a3a3a;
+  margin-bottom: 1.5rem;
+}
+
+/* Controls: Search, Filters, Sort */
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.controls input,
+.controls select {
+  padding: 0.7rem 1rem;
+  border-radius: 8px;
+  border: none;
+  font-size: 1rem;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease-in-out;
+}
+
+.controls input:focus,
+.controls select:focus {
+  outline: none;
+  box-shadow: 0 0 5px #5e60ce;
+}
+
+/* Filter Buttons */
+#filters button {
+  padding: 0.6rem 1rem;
+  border: none;
+  background-color: #eee;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+#filters button:hover,
+#filters button.active {
+  background-color: #5e60ce;
+  color: #fff;
+  transform: scale(1.05);
+}
+
+/* Product Grid Layout */
+#product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Product Card */
+.product {
+  background-color: #ffffffcc;
+  border-radius: 16px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 1rem;
+  text-align: center;
+}
+
+.product:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(94, 96, 206, 0.2);
+}
+
+.product img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+}
+
+.product h3 {
+  margin: 0.5rem 0 0.2rem;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.product p {
+  margin: 0.2rem 0;
+  font-weight: bold;
+  color: #5e60ce;
+}
+
+.product span {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+/* Responsive controls layout */
+@media (max-width: 768px) {
+  .controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
