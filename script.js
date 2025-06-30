@@ -3,14 +3,13 @@ const products = [
     name: "Men's Jacket",
     price: 2999,
     category: "Men",
-    image: "images/jack.jpeg" 
+    image: "images/jack.jpeg"
   },
   {
     name: "Women's Dress",
     price: 1999,
     category: "Women",
-    image: "images/womenjack.webp" 
-
+    image: "images/womenjack.webp"
   },
   {
     name: "Men's Shoes",
@@ -57,21 +56,72 @@ const products = [
 ];
 
 let filtered = [...products];
+const cart = [];
+
 
 function displayProducts(productList) {
   const grid = document.getElementById("product-grid");
   grid.innerHTML = "";
-  productList.forEach(p => {
+
+  productList.forEach((p, index) => {
     grid.innerHTML += `
       <div class="product">
         <img src="${p.image}" alt="${p.name}">
         <h3>${p.name}</h3>
         <p>₹${p.price}</p>
         <span>${p.category}</span>
+        <button class="add-to-cart" data-index="${index}">Add to Cart</button>
       </div>
     `;
   });
+
+
+  const cartButtons = document.querySelectorAll(".add-to-cart");
+  cartButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const index = btn.dataset.index;
+      const selectedProduct = productList[index];
+      addToCart(selectedProduct);
+      alert("🛒 Added to cart successfully!");
+    });
+  });
 }
+
+
+function addToCart(product) {
+  cart.push(product);
+  updateCartUI();
+}
+
+
+function updateCartUI() {
+  const cartItems = document.getElementById("cart-items");
+  const cartCount = document.getElementById("cart-count");
+  const cartTotal = document.getElementById("cart-total");
+
+  cartItems.innerHTML = "";
+  let total = 0;
+
+  cart.forEach((item, index) => {
+    total += item.price;
+    cartItems.innerHTML += `
+      <li>
+        ${item.name} - ₹${item.price}
+        <button onclick="removeFromCart(${index})">❌</button>
+      </li>
+    `;
+  });
+
+  cartCount.textContent = cart.length;
+  cartTotal.textContent = total;
+}
+
+
+function removeFromCart(index) {
+  cart.splice(index, 1);
+  updateCartUI();
+}
+
 
 displayProducts(products);
 
@@ -92,7 +142,6 @@ filterButtons.forEach(btn => {
     displayProducts(filtered);
   });
 });
-
 
 const sortSelect = document.getElementById("sort");
 sortSelect.addEventListener("change", () => {
